@@ -6,25 +6,32 @@
 #
 
 library(shiny)
+library(DT)
 
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel(fluidRow(
+    
+    column(2,
+           h4("Hotels Reviews")
+           ),
+    column(5,
+           textInput("url", label = 
+                       h3("Enter URL (from tripadvisor)"), 
+                     value = "Enter text...")
+    ),
+    column(5, offset = 0,
+           br(),br(),
+           actionButton("action", label = "Review Summary")
+    )
+    
+    
+    )),
+  hr(),
 
   # Sidebar with a slider input for number of bins
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-    ),
 
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
-    )
-  )
+      dataTableOutput("reviewtable")
+
 ))

@@ -25,5 +25,5 @@ ratingdate <- reviews  %>%
 
 review <- reviews %>% html_nodes(".entry .partial_entry") %>% html_text()
 
-data_frame(id,quote,rating,ratingdate,review) %>% View()
+reviewdf <- data_frame(id,quote,rating,ratingdate,review) 
 
