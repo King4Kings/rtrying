@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(rvest)\nlibrary(xml2)\nlibrary(dplyr)\nurl <- \"https://www.tripadvisor.in/Hotel_Review-g303890-d5614919-Reviews-Altius_Nest-Kodaikanal_Tamil_Nadu.html\"\n#httr::BROWSE(url)\n\nreviews <- url %>% read_html() %>% html_nodes(\"#REVIEWS .innerBubble\")\n#length(reviews)\n#xml_structure(reviews[1])\n\nid <- reviews  %>% html_nodes(\".wrap .quote a\") %>% html_attr(\"id\")\n\nquote <- reviews  %>% html_nodes(\".quote span\") %>% html_text()\n\nrating <- reviews  %>% \n  html_nodes(\".rating .rate .rating_s_fill\") %>% \n  html_attr(\"alt\") %>% \n  gsub(\" of 5 stars\",\"\",.)\n\nratingdate <- reviews  %>% \n  html_nodes(\".rating .ratingDate\") %>% \n  html_attr(\"title\") %>% \n  strptime(\"%d %B %Y\") %>% \n  strftime(\"%d-%m-%Y\")\n\nreview <- reviews %>% html_nodes(\".entry .partial_entry\") %>% html_text()\n\ndata_frame(id,quote,rating,ratingdate,review) %>% View()\n\n",
+    "created" : 1461474329474.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2459659779",
+    "id" : "98A887C5",
+    "lastKnownWriteTime" : 1461484791,
+    "last_content_update" : 1461484791171,
+    "path" : "D:/Projects/rapps/try1/loadingfrmWeb.R",
+    "project_path" : "loadingfrmWeb.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
