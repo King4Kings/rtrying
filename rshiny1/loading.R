@@ -2,7 +2,7 @@ library(tidyr)
 library(readr)
 library(ggplot2)
 library(data.table)
-filename <- "../../data/issues.csv"
+filename <- "../../rdata/issues.csv"
 #filename()
 
 issues <- read_csv(file=filename,trim_ws = TRUE,col_names = TRUE,na = c("NA","0"))
